@@ -143,10 +143,34 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-const book = getBook(2)
+function movieInfo(bookId) {
+  const book = getBook(bookId);
+  // const title = book.title;
+  // const author = book.author;
+  const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+    book;
+  const [primaryGenre, secondGenre, ...otherGenres] = genres; //rest operator
+  console.log("*".repeat(77));
+  console.log(
+    `${title} is a ${pages > 1000 ? "over a thousand" : pages}-page long book written by ${author} published in ${publicationDate.split("-")[0]} book genres: ${primaryGenre + ", " + secondGenre}. Movie adaptation: ${hasMovieAdaptation ? "yes" : "no"}`,
+  );
+  console.log(
+    `Other genres: ${otherGenres.length === 0 ? "no other genres" : otherGenres}`,
+  );
 
-// const title = book.title;
-// const author = book.author;
-const {title, author, pages, publicationDate, genres, hasMovieAdaptation} = book;
-const [primaryGenre, secondGenre] = genres;
-console.log(`Book title: ${title} by ${author} genres: ${primaryGenre}, ${secondGenre}`)
+  const newGenres = ["drama", ...genres, "epic fantasy"]; //spread operator
+  console.log(`User selected genres: ${newGenres}`);
+  const updatedBook = {
+    ...book,
+    moviePublicationDate: "2025-12-19",
+    pages: 912,
+  };
+  const { pages: updatedPages, moviePublicationDate } = updatedBook;
+  //console.log(`Updated info: ${updatedPages}-page movie publication date: ${moviePublicationDate}`)
+}
+
+for (let i = 1; i <= data.length; i++) {
+  movieInfo(i);
+}
+
+// pages > 1000 ? 'over a thousand';
