@@ -135,44 +135,43 @@ const data = [
   },
 ];
 
-function getBooks() {
-  return data;
-}
-
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-function movieInfo(bookId, genreOne = ["Not specified"]) {
+function movieInfo(bookId, extraGenres = ["Not specified"]) {
   const book = getBook(bookId);
-  // const title = book.title;
+  // const title = book.title;  OLD WAY
   // const author = book.author;
   const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
     book;
   const [primaryGenre, secondGenre, ...otherGenres] = genres; //rest operator
   console.log("*".repeat(77));
   console.log(
-    `${title} is a ${pages > 1000 ? "over a thousand" : pages}-page long book written by ${author} published in ${publicationDate.split("-")[0]}\nbook genres: ${primaryGenre + ", " + secondGenre}. Movie adaptation: ${hasMovieAdaptation ? "yes" : "no"}`,
+    `${title} is a ${pages > 1000 ? "over a thousand" : pages}-page long book written by ${author} published in ${publicationDate.split("-")[0]}
+    book genres: ${primaryGenre + ", " + secondGenre}. The book has been ${hasMovieAdaptation ? "" : "not "}Adapted as a movie`,
   );
 
   console.log(
     `Other genres: ${otherGenres.length === 0 ? "no other genres" : otherGenres}`,
   );
 
-  const newGenres = [genreOne, ...genres, "epic fantasy"]; //spread operator
+  const newGenres = [...extraGenres, ...genres, "epic fantasy"]; //spread operator
   console.log(`User selected genres: ${newGenres}`);
-  const updatedBook = {
-    ...book,
-    moviePublicationDate: "2025-12-19",
-    pages: 912,
-  };
-  const { pages: updatedPages, moviePublicationDate } = updatedBook;
-  //console.log(`Updated info: ${updatedPages}-page movie publication date: ${moviePublicationDate}`)
+  return { book };
 }
+const { book } = movieInfo(1);
+const updatedBook = {
+  ...book,
+  moviePublicationDate: "2025-12-19",
+  pages: 998,
+};
+const { title, pages: updatedPages, pages, moviePublicationDate } = updatedBook;
 
+console.log(
+  `Updated info: ${title} ${updatedPages}-page book with movie adaptation published in: ${moviePublicationDate.split("-")[0]}`,
+);
 for (let i = 1; i <= data.length; i++) {
   movieInfo(i);
 }
 movieInfo(1, ["furry", "drama"]);
-
-// pages > 1000 ? 'over a thousand';
