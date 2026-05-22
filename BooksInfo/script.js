@@ -138,17 +138,18 @@ const data = [
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+//displaying only year using arrow function
+const getYear = (date) => date.split("-")[0];
 
 function movieInfo(bookId, extraGenres = ["Not specified"]) {
   const book = getBook(bookId);
   // const title = book.title;  OLD WAY
-  // const author = book.author;
-  const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+  const { title, author, pages, publicationDate, genres, hasMovieAdaptation,id } =
     book;
   const [primaryGenre, secondGenre, ...otherGenres] = genres; //rest operator
   console.log("*".repeat(77));
   console.log(
-    `${title} is a ${pages > 1000 ? "over a thousand" : pages}-page long book written by ${author} published in ${publicationDate.split("-")[0]}
+    `Movie number ${id}:\n${title} is a ${pages > 1000 ? "over a thousand" : pages}-page long book written by ${author} published in ${getYear(publicationDate)}
     book genres: ${primaryGenre + ", " + secondGenre}. The book has been ${hasMovieAdaptation ? "" : "not "}Adapted as a movie`,
   );
 
@@ -169,8 +170,9 @@ const updatedBook = {
 const { title, pages: updatedPages, pages, moviePublicationDate } = updatedBook;
 
 console.log(
-  `Updated info: ${title} ${updatedPages}-page book with movie adaptation published in: ${moviePublicationDate.split("-")[0]}`,
+  `Updated info: ${title} ${updatedPages}-page book with movie adaptation published in: ${getYear(moviePublicationDate)}`,
 );
+
 for (let i = 1; i <= data.length; i++) {
   movieInfo(i);
 }
