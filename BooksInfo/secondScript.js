@@ -66,7 +66,7 @@ const data = [
     publicationDate: "1965-01-01",
     author: "Frank Herbert",
     genres: ["science fiction", "novel", "adventure"],
-    hasMovieAdaptation: true,
+    hasMovieAdaptation: false,
     pages: 658,
     translations: {
       spanish: "",
@@ -144,7 +144,7 @@ const totalReviews = (book) =>
   (book.reviews.librarything?.reviewsCount ?? 0);
 
 const titles = books.map((book) => book.title);
-console.log(titles);
+console.log(`Titles list:\n${titles.join("\n")}`);
 
 //first method
 // const essentialData = books.map((el) => `Book title: ${el.title} Book author: ${el.author}`);
@@ -155,4 +155,15 @@ const essentialData = books.map((currentbook) => ({
   BookAuthor: currentbook.author,
   reviewsTotal: totalReviews(currentbook),
 }));
+console.log("Displaying only essential data:")
 console.log(essentialData);
+
+const findByAuthor = essentialData.filter(
+  (book) => book.BookAuthor === "Frank Herbert",
+);
+console.log(`Finding by author method:`);
+console.log(findByAuthor);
+
+const multipleFilters = books.filter((book) => book.pages > 500).filter((book)=>book.hasMovieAdaptation==true);
+console.log("Filtering multiple factors method:");
+console.log(multipleFilters);
