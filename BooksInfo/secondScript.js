@@ -185,3 +185,13 @@ const allPagesOfBooks = books.reduce(
   0, //beggining value
 );
 console.log(`Total number of all books pages: ${allPagesOfBooks}`);
+
+// const compareNumbers = (a,b) => a-b;
+// const x = [2,4,99,100,21,5,6,3];
+// const sortedx = x.slice().sort(compareNumbers); //using slice to not mutate original(x) array
+// console.log(`Sorted array ${sortedx}`);
+// x;
+
+const sortedByPages = books.slice().sort((initial,book)=> book.pages-initial.pages)
+console.log("Book sorted by page number:")
+console.log(sortedByPages);
