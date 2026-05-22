@@ -178,3 +178,10 @@ const humorBooks = books
   }));
 console.log("humor books list:");
 console.log(humorBooks);
+
+//sum holds the final value of our variable
+const allPagesOfBooks = books.reduce(
+  (sum, book) => sum + book.pages,
+  0, //beggining value
+);
+console.log(`Total number of all books pages: ${allPagesOfBooks}`);
