@@ -144,13 +144,15 @@ const getYear = (date) => date.split("-")[0];
 function movieInfo(bookId, extraGenres = ["Not specified"]) {
   const book = getBook(bookId);
   // const title = book.title;  OLD WAY
-  const { title, author, pages, publicationDate, genres, hasMovieAdaptation,id } =
+  const { title, author, pages, publicationDate, genres, hasMovieAdaptation,id,translations } =
     book;
   const [primaryGenre, secondGenre, ...otherGenres] = genres; //rest operator
   console.log("*".repeat(77));
   console.log(
-    `Movie number ${id}:\n${title} is a ${pages > 1000 ? "over a thousand" : pages}-page long book written by ${author} published in ${getYear(publicationDate)}
-    book genres: ${primaryGenre + ", " + secondGenre}. The book has been ${hasMovieAdaptation ? "" : "not "}Adapted as a movie`,
+    `Book number ${id}:\n${title} is a ${pages > 1000 ? "over a thousand" : pages}-page long book written by ${author} published in ${getYear(publicationDate)}
+    book genres: ${primaryGenre + ", " + secondGenre}. The book has been ${hasMovieAdaptation ? "" : "not "}Adapted as a movie
+    ${translations.polish ? "":"doesn't"} have polish translation `
+    
   );
 
   console.log(
@@ -177,3 +179,12 @@ for (let i = 1; i <= data.length; i++) {
   movieInfo(i);
 }
 movieInfo(1, ["furry", "drama"]);
+
+// SHORT CIRCUTING
+// console.log(true && "yes");
+// console.log(false && "yes");
+// console.log("true value" && "this will display because first one is true");
+// console.log(0 && "this wont display");
+
+// console.log(true || "")
+// console.log(0 || "this will display");
