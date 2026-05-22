@@ -147,12 +147,12 @@ const titles = books.map((book) => book.title);
 console.log(titles);
 
 //first method
-// const importantInfo = books.map((el) => `Book title: ${el.title} Book author: ${el.author}`);
+// const essentialData = books.map((el) => `Book title: ${el.title} Book author: ${el.author}`);
 
 // second method
-const importantInfo = books.map((currentbook) => ({
+const essentialData = books.map((currentbook) => ({
   BookTitle: currentbook.title,
   BookAuthor: currentbook.author,
   reviewsTotal: totalReviews(currentbook),
 }));
-console.log(importantInfo);
+console.log(essentialData);
