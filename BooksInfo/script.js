@@ -144,15 +144,28 @@ const getYear = (date) => date.split("-")[0];
 function movieInfo(bookId, extraGenres = ["Not specified"]) {
   const book = getBook(bookId);
   // const title = book.title;  OLD WAY
-  const { title, author, pages, publicationDate, genres, hasMovieAdaptation,id,translations } =
-    book;
+  const {
+    title,
+    author,
+    pages,
+    publicationDate,
+    genres,
+    hasMovieAdaptation,
+    id,
+    translations,
+    reviews,
+  } = book;
+
+  const totalReviews =
+    (reviews.goodreads?.reviewsCount ?? 0) +
+    (reviews.librarything?.reviewsCount ?? 0);
+
   const [primaryGenre, secondGenre, ...otherGenres] = genres; //rest operator
   console.log("*".repeat(77));
   console.log(
     `Book number ${id}:\n${title} is a ${pages > 1000 ? "over a thousand" : pages}-page long book written by ${author} published in ${getYear(publicationDate)}
     book genres: ${primaryGenre + ", " + secondGenre}. The book has been ${hasMovieAdaptation ? "" : "not "}Adapted as a movie
-    ${translations.polish ? "":"doesn't"} have polish translation `
-    
+    ${translations.polish ? "" : "doesn't"} have polish translation reviews amount: ${totalReviews} `,
   );
 
   console.log(
