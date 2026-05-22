@@ -155,7 +155,7 @@ const essentialData = books.map((currentbook) => ({
   BookAuthor: currentbook.author,
   reviewsTotal: totalReviews(currentbook),
 }));
-console.log("Displaying only essential data:")
+console.log("Displaying only essential data:");
 console.log(essentialData);
 
 const findByAuthor = essentialData.filter(
@@ -164,6 +164,17 @@ const findByAuthor = essentialData.filter(
 console.log(`Finding by author method:`);
 console.log(findByAuthor);
 
-const multipleFilters = books.filter((book) => book.pages > 500).filter((book)=>book.hasMovieAdaptation==true);
+const multipleFilters = books
+  .filter((book) => book.pages > 500 && book.pages < 1000)
+  .filter((book) => book.hasMovieAdaptation == false);
 console.log("Filtering multiple factors method:");
 console.log(multipleFilters);
+
+const humorBooks = books
+  .filter((book) => book.genres.includes("humor"))
+  .map((book) => ({
+    bookTitle: book.title,
+    bookAuthor: book.author,
+  }));
+console.log("humor books list:");
+console.log(humorBooks);
