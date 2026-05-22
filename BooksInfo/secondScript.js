@@ -134,3 +134,25 @@ const data = [
     },
   },
 ];
+
+function getBooks() {
+  return data;
+}
+const books = getBooks();
+const totalReviews = (book) =>
+  (book.reviews.goodreads?.reviewsCount ?? 0) +
+  (book.reviews.librarything?.reviewsCount ?? 0);
+
+const titles = books.map((book) => book.title);
+console.log(titles);
+
+//first method
+// const importantInfo = books.map((el) => `Book title: ${el.title} Book author: ${el.author}`);
+
+// second method
+const importantInfo = books.map((currentbook) => ({
+  BookTitle: currentbook.title,
+  BookAuthor: currentbook.author,
+  reviewsTotal: totalReviews(currentbook),
+}));
+console.log(importantInfo);
