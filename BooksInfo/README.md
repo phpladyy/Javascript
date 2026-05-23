@@ -1,1 +1,1 @@
-simple book library console program displaying table values in clear format with use of spread and rest operators
+Two simple console applications for displaying book library array values using modern JavaScript features.

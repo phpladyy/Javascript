@@ -192,6 +192,8 @@ console.log(`Total number of all books pages: ${allPagesOfBooks}`);
 // console.log(`Sorted array ${sortedx}`);
 // x;
 
-const sortedByPages = books.slice().sort((initial,book)=> book.pages-initial.pages)
-console.log("Book sorted by page number:")
+const sortedByPages = books
+  .slice()
+  .sort((initial, book) => book.pages - initial.pages);
+console.log("Book sorted by page number:");
 console.log(sortedByPages);
