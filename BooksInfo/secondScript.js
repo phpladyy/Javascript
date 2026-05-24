@@ -197,3 +197,24 @@ const sortedByPages = books
   .sort((initial, book) => book.pages - initial.pages);
 console.log("Book sorted by page number:");
 console.log(sortedByPages);
+
+const newBook = {
+  id: 6,
+  title: "The miser",
+  author: "Louis de Funès",
+};
+
+console.log(
+  "adding new book array containing previous books and a new one using spread operator(...)",
+);
+const booksAfterAdded = [...books, newBook];
+console.log(booksAfterAdded);
+
+console.log(
+  "Simple search engine working by Deleting objects from array using filter method:",
+);
+const searchedBookTitle = "the";
+const booksAfterDeletion = booksAfterAdded.filter((book) =>
+  book.title.toLowerCase().includes(searchedBookTitle),
+);
+console.log(booksAfterDeletion);
