@@ -230,7 +230,7 @@ console.log(bookUpdate[0]);
 console.log(
   "Simple search engine working by Deleting objects from array using filter method:",
 );
-const findBookByTitle = (searchedBookTitle) =>
+const findBookByTitle = (searchedBookTitle='rings') =>
   bookUpdate
     .filter((book) =>
       book.title.toLowerCase().includes(searchedBookTitle.toLowerCase()),
@@ -242,4 +242,4 @@ const findBookByTitle = (searchedBookTitle) =>
       "Publication date": book.publicationDate,
     }));
 
-console.log(findBookByTitle("harry"));
+console.log(findBookByTitle('harry'));
