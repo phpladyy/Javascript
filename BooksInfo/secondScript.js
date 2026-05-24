@@ -198,23 +198,48 @@ const sortedByPages = books
 console.log("Book sorted by page number:");
 console.log(sortedByPages);
 
-const newBook = {
-  id: 6,
-  title: "The miser",
-  author: "Louis de Funès",
-};
+const newBooks = [
+  {
+    id: 6,
+    title: "The miser",
+    author: "Louis de Funès",
+    publicationDate: "1980-03-5",
+  },
+  {
+    id: 7,
+    title: "Harry Potter and the Order of the Phoenix",
+    author: "J. K. Rowling",
+    publicationDate: "2003-06-21",
+  },
+];
 
 console.log(
   "adding new book array containing previous books and a new one using spread operator(...)",
 );
-const booksAfterAdded = [...books, newBook];
+const booksAfterAdded = [...books, ...newBooks];
 console.log(booksAfterAdded);
 
 console.log(
   "Simple search engine working by Deleting objects from array using filter method:",
 );
-const searchedBookTitle = "the";
-const booksAfterDeletion = booksAfterAdded.filter((book) =>
-  book.title.toLowerCase().includes(searchedBookTitle),
-);
-console.log(booksAfterDeletion);
+const findBookByTitle = (searchedBookTitle) =>
+  booksAfterAdded
+    .filter((book) =>
+      book.title.toLowerCase().includes(searchedBookTitle.toLowerCase()),
+    )
+    .map((book) => ({
+      "Book title": book.title,
+      Author: book.author,
+      "Publication date": book.publicationDate,
+    }));
+
+console.log(findBookByTitle("harry"));
+
+// const searchedBookTitle = "Harry potter".toLowerCase(); //enter searched book
+// const booksAfterDeletion = booksAfterAdded.filter((book) => book.title.toLowerCase().includes(searchedBookTitle))
+//   .map((book) => ({
+//     'Book title': book.title,
+//     'Author': book.author,
+//     'Publication date': book.publicationDate,
+//   }))
+// console.log(booksAfterDeletion);
