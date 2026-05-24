@@ -202,14 +202,16 @@ const newBooks = [
   {
     id: 6,
     title: "The miser",
-    author: "Louis de Funès",
     publicationDate: "1980-03-5",
+    author: "Louis de Funès",
+    pages: 348,
   },
   {
     id: 7,
     title: "Harry Potter and the Order of the Phoenix",
-    author: "J. K. Rowling",
     publicationDate: "2003-06-21",
+    author: "J. K. Rowling",
+    pages: 748,
   },
 ];
 
@@ -219,27 +221,25 @@ console.log(
 const booksAfterAdded = [...books, ...newBooks];
 console.log(booksAfterAdded);
 
+console.log("updating first book info using .map to override the property we want to manipulate:");
+const bookUpdate = booksAfterAdded.map((book) =>
+  book.id === 1 ? { ...book, pages: 1622 } : book,
+);
+console.log(bookUpdate[0]);
+
 console.log(
   "Simple search engine working by Deleting objects from array using filter method:",
 );
 const findBookByTitle = (searchedBookTitle) =>
-  booksAfterAdded
+  bookUpdate
     .filter((book) =>
       book.title.toLowerCase().includes(searchedBookTitle.toLowerCase()),
     )
     .map((book) => ({
       "Book title": book.title,
       Author: book.author,
+      Pages: book.pages,
       "Publication date": book.publicationDate,
     }));
 
 console.log(findBookByTitle("harry"));
-
-// const searchedBookTitle = "Harry potter".toLowerCase(); //enter searched book
-// const booksAfterDeletion = booksAfterAdded.filter((book) => book.title.toLowerCase().includes(searchedBookTitle))
-//   .map((book) => ({
-//     'Book title': book.title,
-//     'Author': book.author,
-//     'Publication date': book.publicationDate,
-//   }))
-// console.log(booksAfterDeletion);
